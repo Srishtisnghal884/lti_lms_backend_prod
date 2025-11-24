@@ -225,7 +225,8 @@ openssl genrsa -out private.key 2048
 openssl rsa -in private.key -pubout -out public.pem
 
 -  
-
+## Node Version
+v22.13.1
 ## License
 
 To be updated
