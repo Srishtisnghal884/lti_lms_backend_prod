@@ -1,0 +1,85 @@
+{
+  "name": "nodejs-api",
+  "version": "1.0.0",
+  "description": "Node.js REST API boilerplate using Express, Sequelize, and PostgreSQL.",
+  "main": "src/index.js",
+  "scripts": {
+    "start": "NODE_ENV=production node src/index.js",
+    "dev": "cross-env NODE_ENV=development nodemon src/index.js",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
+    "prettier": "prettier --check '**/*.js'",
+    "prettier:fix": "prettier --write '**/*.js'",
+    "seed": "cross-env NODE_ENV=development sequelize db:seed:all",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "version": "update-changelog && git add CHANGELOG.md",
+    "build": "yarn install --production && echo '✅ Local build complete — ready for Vercel'"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@gitlab.com/trungnq89/nodejs-api.git"
+  },
+  "keywords": [
+    "node",
+    "express",
+    "api",
+    "postgres",
+    "sequelize",
+    "rest",
+    "boilerplate"
+  ],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Srishtisnghal884/lti_lms_backend/issues"
+  },
+  "homepage": "https://github.com/Srishtisnghal884/lti_lms_backend#readme",
+  "engines": {
+    "node": ">=20.0.0"
+  },
+  "dependencies": {
+    "@hapi/joi": "^17.1.1",
+    "accesscontrol": "^2.2.1",
+    "axios": "^1.13.0",
+    "bcrypt": "^5.0.0",
+    "body-parser": "^1.19.0",
+    "cloudinary": "^2.8.0",
+    "compression": "^1.7.4",
+    "cookie-parser": "^1.4.5",
+    "cors": "^2.8.5",
+    "cross-env": "^10.1.0",
+    "crypto": "^1.0.1",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "express-jwt": "^6.0.0",
+    "express-rate-limit": "^5.2.3",
+    "helmet": "^4.4.1",
+    "http-status": "^1.5.0",
+    "jsonwebtoken": "^9.0.2",
+    "jwks-rsa": "^3.2.0",
+    "morgan": "^1.10.0",
+    "multer": "^2.0.2",
+    "multer-storage-cloudinary": "^4.0.0",
+    "nodemailer": "^6.4.17",
+    "openapi-types": "12.1.3",
+    "pg": "^8.16.3",
+    "pg-hstore": "^2.3.3",
+    "sequelize": "^6.5.0",
+    "swagger-jsdoc": "^6.0.2",
+    "swagger-ui-express": "^4.1.6",
+    "winston": "^3.3.3",
+    "xss-clean": "^0.1.1",
+    "yesql": "^5.0.0"
+  },
+  "devDependencies": {
+    "eslint": "^7.19.0",
+    "eslint-config-airbnb-base": "^14.2.1",
+    "eslint-config-prettier": "^7.2.0",
+    "eslint-plugin-import": "^2.22.1",
+    "eslint-plugin-prettier": "^3.3.1",
+    "nodemon": "^2.0.7",
+    "prettier": "^2.2.1",
+    "sequelize-cli": "^6.6.3",
+    "update-changelog": "^1.0.2"
+  }
+}
