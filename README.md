@@ -203,10 +203,30 @@ This app uses pm2 in production mode, which is already configured to store the l
 
 Note: API request information (request url, response code, timestamp, etc.) are also automatically logged (using [morgan](https://github.com/expressjs/morgan)).
 
-## Inspirations
+## Cloudinary 
+CLOUDINARY_CLOUD_NAME=***
+CLOUDINARY_API_KEY=***
+CLOUDINARY_API_SECRET=****
+CLOUDINARY_PUBLIC_URL = https://res.cloudinary.com/***/raw/upload/***/testgorilla_reports/
+
+
+## Testgorilla 
+Please make sure once api run the .env file update by code and set the TESTGORILLA_TOKEN dynamically in env file. so make sure its worked
+TG_USERNAME=****
+TG_PASSWORD=****
+TG_API_URL=https://app.testgorilla.com/api/
+TESTGORILLA_TOKEN=****
+TG_ORIGIN=https://app.testgorilla.com
+TG_INVITE_URL=https://talent-assessment.testgorilla.com/
+
+## Generate Private and public key
+
+openssl genrsa -out private.key 2048
+openssl rsa -in private.key -pubout -out public.pem
 
 -  
-
+## Node Version
+v22.13.1
 ## License
 
 To be updated
