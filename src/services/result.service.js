@@ -53,7 +53,7 @@ const getAllStudentResults = async (searchEmail = "",page = 1, pageSize = 10) =>
     ],
     
     //group: ['candidate_email'],
-    order: [['id', 'ASC']],
+    order: [['id', 'DESC']],
     limit,
     offset,
     subQuery: false,
@@ -124,7 +124,43 @@ const getStudentExamDetails = async (email,page = 1, pageSize = 10) => {
   };
 };
 
+// ----------------------------------------------------
+// Assessment List with Search and Pagination
+// ----------------------------------------------------
+const assessmentList = async (assessment = "", page = 1, pageSize = 10) => {
+  const offset = (page - 1) * pageSize;
+  const limit = pageSize;
+  const whereClause = {status :'active'};
+
+  if (assessment && assessment.trim() !== "") {
+    whereClause[Op.or] = [
+      { main_career: { [Op.iLike]: `%${assessment.trim()}%` } },
+      { sub_career: { [Op.iLike]: `%${assessment.trim()}%` } }
+    ];
+  }
+
+  // *** Apply whereClause here ***
+  const totalAssessments = await assessments.count({ where: whereClause });
+
+  const results = await assessments.findAll({
+    attributes: ['id', 'name', 'exam_id', 'main_career', 'sub_career'],
+    where: whereClause,
+    order: [['id', 'ASC']],
+    limit,
+    offset,
+    raw: true,
+  });
+
+  return {
+    totalRecords: totalAssessments,
+    totalPages: Math.ceil(totalAssessments / pageSize),
+    currentPage: page,
+    data: results,
+  };
+};
+
 module.exports = {
   getAllStudentResults,
-  getStudentExamDetails
+  getStudentExamDetails,
+  assessmentList
 };

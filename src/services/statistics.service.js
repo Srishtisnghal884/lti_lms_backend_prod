@@ -7,7 +7,7 @@ const getOverallStats = async () => {
     SELECT COUNT(DISTINCT candidate_email) AS totalStudents
     FROM assessment_attempts
   `);
-  const totalAssessments = await db.assessments.count();
+  const totalAssessments = await db.assessments.count({where: {status :'active'}});
   const totalAttempts = await db.assessment_attempts.count({
         where: {
           status: { [Op.eq]: 'completed' }

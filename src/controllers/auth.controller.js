@@ -204,26 +204,55 @@ const ltiSsoLogin = catchAsync(async (req, res) => {
    // req.session.user = { email, name };
     //console.log("SSO user session created:", req.session.user);
     const userToken = jwt.sign({ email, name }, process.env.JWT_SECRET, { expiresIn: "5h" });
+		// res.send(`
+    //   <h2>Welcome ${name}</h2>
+    //   <p>Email: ${email}</p>
+		// 	<a class="css-1yo9745 ew0ppij0" style="
+		// 			border: 1px solid rgb(9, 73, 103);
+		// 			cursor: pointer;
+		// 			display: inline-block;
+		// 			font-style: normal;
+		// 			outline: none;
+		// 			font-family: inherit;
+		// 			font-weight: 500;
+		// 			font-size: 16px;
+		// 			line-height: 20px;
+		// 			border-radius: 4px;
+		// 			padding: 12px 20px;
+		// 			background: rgb(9, 73, 103);
+		// 			color: rgb(255, 255, 255);
+		// 	" target="_blank" href=${`https://lti-lms.vercel.app/?auth=${userToken}`}>Launch</a>
+    // `);
+		// const redirectUrl = `https://lti-lms.vercel.app/?auth=${userToken}`;
+		// return res.redirect(redirectUrl);
+
+		// res.send(`
+		// 		<html>
+		// 			<body>
+		// 				<script>
+		// 					window.open("https://lti-lms.vercel.app/?auth=${userToken}", "_blank");
+		// 					window.location.href = "/somewhere-else";  // optional
+		// 				</script>
+		// 			</body>
+		// 		</html>
+		// `);
+
 		res.send(`
-      <h2>Welcome ${name}</h2>
-      <p>Email: ${email}</p>
-      <p>You're logged in via JWT SSO From backend</p>
-			<a class="css-1yo9745 ew0ppij0" style="
-					border: 1px solid rgb(9, 73, 103);
-					cursor: pointer;
-					display: inline-block;
-					font-style: normal;
-					outline: none;
-					font-family: inherit;
-					font-weight: 500;
-					font-size: 16px;
-					line-height: 20px;
-					border-radius: 4px;
-					padding: 12px 20px;
-					background: rgb(9, 73, 103);
-					color: rgb(255, 255, 255);
-			" target="_blank" href=${`https://lti-lms.vercel.app/?auth=${userToken}`}>Launch</a>
-    `);
+				<html>
+					<body>
+						<script>
+							const url = "https://lti-lms.vercel.app/?auth=${userToken}";
+							
+							// Open new window/tab
+							window.open(url, "_blank");
+
+							// Close the current popup (only works if this window was opened by JS)
+							window.close();
+						</script>
+					</body>
+				</html>
+			`);
+
   } catch (err) {
     console.error("SSO login failed:", err);
     res.status(401).send("Invalid or expired SSO token");

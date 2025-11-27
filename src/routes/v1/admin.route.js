@@ -12,5 +12,7 @@ router.get('/student-list/:searchEmail?/:page/:pageSize', adminController.studen
 router.get('/studentResultList/:searchEmail?/:page/:pageSize', adminController.studentResultList);
 router.get('/studentDetailsResultList/:searchEmail?/:page/:pageSize', adminController.studentDetailsResultList);
 router.post('/upload-logo',upload.single("logo"),imageUploadValidator, adminController.uploadLogo);
+router.get('/get-logo', adminController.getLogo);
+router.get('/assessment-list/:assessment?/:page/:pageSize', adminController.assessmentList);
 
 module.exports = router;

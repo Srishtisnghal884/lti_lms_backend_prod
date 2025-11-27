@@ -80,11 +80,32 @@ const uploadLogo  = catchAsync(async(req,res) => {
   });
 })
 
+const getLogo = catchAsync(async(req,res) => {
+  const getLogo = await userService.getUserLogoByEmail('admin@gmail.com');
+  const user = {
+    logo:getLogo?.logo || 'https://employabilityadvantage.com/wp-content/uploads/2023/01/ECA-coloured-logo.svg'
+  }
+  res.send({ success: true, data: user });
+});
+
+// ---------------------------------------------------------
+// 3. Assessment LIST → All Assessment List
+// ---------------------------------------------------------
+const assessmentList = catchAsync(async (req, res) => {
+	const {page,pageSize} = req.params;
+	const {assessment} = req.query;
+	const students = await resultService.assessmentList(assessment,page,pageSize);
+	res.json(students)
+});
+
+
 // EXPORT
 module.exports = {
   statics,
   studentList,
   studentResultList,
   studentDetailsResultList,
-  uploadLogo 
+  uploadLogo,
+  getLogo,
+  assessmentList
 };
