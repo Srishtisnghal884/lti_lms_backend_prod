@@ -238,20 +238,20 @@ const ltiSsoLogin = catchAsync(async (req, res) => {
 		// `);
 
 		res.send(`
-				<html>
-					<body>
-						<script>
-							const url = "https://lti-lms.vercel.app/?auth=${userToken}";
-							
-							// Open new window/tab
-							window.open(url, "_blank");
+			<html>
+				<body>
+					<button id="openWindow">Continue</button>
 
-							// Close the current popup (only works if this window was opened by JS)
+					<script>
+						document.getElementById("openWindow").addEventListener("click", () => {
+							const url = "https://lti-lms.vercel.app/?auth=${userToken}";
+							window.open(url, "_blank");
 							window.close();
-						</script>
-					</body>
-				</html>
-			`);
+						});
+					</script>
+				</body>
+			</html>
+		`);
 
   } catch (err) {
     console.error("SSO login failed:", err);
